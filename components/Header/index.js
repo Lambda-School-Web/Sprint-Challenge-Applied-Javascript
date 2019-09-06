@@ -22,7 +22,7 @@ function Header() {
 
   const tempSpan = document.createElement("span");
   tempSpan.classList.add("temp");
-  tempSpan.textContent = "98";
+  tempSpan.textContent = "98°";
 
   headerDiv.append(dateSpan, titleH1, tempSpan);
 
