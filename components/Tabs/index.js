@@ -24,7 +24,25 @@ function Topic(data) {
   const topicDiv = document.createElement("div");
   topicDiv.classList.add("tab");
   topicDiv.textContent = data;
+  console.log(data);
 
+  topicDiv.addEventListener("click", e => {
+    const cards = document.querySelectorAll(".card");
+    let cardsArr = [...cards];
+    if (topicDiv.textContent == "All") {
+      cardsArr.forEach(card => (card.style.display = "block"));
+    } else {
+      const topics = document.querySelectorAll(
+        `div[data-topic=${topicDiv.textContent}]`
+      );
+      let topicsArr = [...topics];
+
+      cardsArr.forEach(card => (card.style.display = "none"));
+      topicsArr.forEach(topic => {
+        topic.style.display = "block";
+      });
+    }
+  });
   return topicDiv;
 }
 

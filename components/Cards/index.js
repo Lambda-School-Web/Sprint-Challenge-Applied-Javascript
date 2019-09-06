@@ -27,15 +27,22 @@ axios
       .sort()
       .forEach(key =>
         res.data.articles[key].forEach(article =>
-          cardsContainer.append(Card(article))
+          cardsContainer.append(Card(article, key))
         )
       );
   })
   .catch(err => console.error(err));
 
-function Card(data) {
+function Card(data, key) {
   const cardDiv = document.createElement("div");
   cardDiv.classList.add("card");
+  console.log(key);
+  if (key == "node") {
+    console.log("ran");
+    cardDiv.dataset.topic = "node.js";
+  } else {
+    cardDiv.dataset.topic = key;
+  }
 
   const headlineDiv = document.createElement("div");
   headlineDiv.classList.add("headline");
