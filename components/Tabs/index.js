@@ -11,9 +11,13 @@
 const topicsContainer = document.querySelector(".topics");
 axios
   .get("https://lambda-times-backend.herokuapp.com/topics")
-  .then(res =>
-    res.data.topics.forEach(topic => topicsContainer.append(Topic(topic)))
-  )
+  .then(res => {
+    let topicsArr = ["All", ...res.data.topics];
+
+    topicsArr.forEach(topic => {
+      topicsContainer.append(Topic(topic));
+    });
+  })
   .catch(err => console.error(err));
 
 function Topic(data) {
