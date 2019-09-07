@@ -9,11 +9,11 @@
 //    <div class="tab">topic here</div>
 
 const topicsContainer = document.querySelector(".topics");
+
 axios
   .get("https://lambda-times-backend.herokuapp.com/topics")
   .then(res => {
     let topicsArr = ["All", ...res.data.topics];
-
     topicsArr.forEach(topic => {
       topicsContainer.append(Topic(topic));
     });
@@ -23,8 +23,9 @@ axios
 function Topic(data) {
   const topicDiv = document.createElement("div");
   topicDiv.classList.add("tab");
+
+  topicDiv.dataset.topic = data == "node.js" ? "node" : data;
   topicDiv.textContent = data;
-  console.log(data);
 
   topicDiv.addEventListener("click", e => {
     const cards = document.querySelectorAll(".card");
@@ -33,7 +34,7 @@ function Topic(data) {
       cardsArr.forEach(card => (card.style.display = "block"));
     } else {
       const topics = document.querySelectorAll(
-        `div[data-topic=${topicDiv.textContent}]`
+        `div[data-topic=${topicDiv.dataset.topic}]`
       );
       let topicsArr = [...topics];
 
@@ -43,7 +44,6 @@ function Topic(data) {
       });
     }
   });
+
   return topicDiv;
 }
-
-topicsContainer.append(Topic());

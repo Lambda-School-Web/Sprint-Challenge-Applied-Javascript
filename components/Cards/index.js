@@ -36,13 +36,7 @@ axios
 function Card(data, key) {
   const cardDiv = document.createElement("div");
   cardDiv.classList.add("card");
-  console.log(key);
-  if (key == "node") {
-    console.log("ran");
-    cardDiv.dataset.topic = "node.js";
-  } else {
-    cardDiv.dataset.topic = key;
-  }
+  cardDiv.dataset.topic = key;
 
   const headlineDiv = document.createElement("div");
   headlineDiv.classList.add("headline");
